@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 return [
 
 
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    'default' => env('DATABASE_URL') ? 'pgsql' : env('DB_CONNECTION', 'sqlite'),
 
 
     'connections' => [
