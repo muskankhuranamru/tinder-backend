@@ -2,7 +2,7 @@
 
 A Laravel-based RESTful API for a Tinder-like mobile application with swipe functionality, pagination, and automated notifications.
 
-## 🎯 Features
+## Features
 
 - **People Profiles**: Manage person data (name, age, pictures, location)
 - **Like/Dislike System**: Track user preferences with swipe actions
@@ -11,14 +11,14 @@ A Laravel-based RESTful API for a Tinder-like mobile application with swipe func
 - **Automated Notifications**: Hourly cronjob emails admin when person gets 50+ likes
 - **API Documentation**: Interactive Swagger/OpenAPI documentation
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: Laravel 12.0
 - **Language**: PHP 8.2+
 - **Database**: SQLite (RDBMS with foreign keys & constraints)
 - **API Docs**: Swagger/OpenAPI 3.0 (darkaonline/l5-swagger)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 tinder-backend/
@@ -43,7 +43,7 @@ tinder-backend/
     └── popular-person.blade.php        # Email template
 ```
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### People Table
 | Column | Type | Description |
@@ -72,7 +72,7 @@ tinder-backend/
 | person_id | Foreign Key → people.id | Who was disliked |
 | unique(user_id, person_id) | Constraint | Prevents duplicates |
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - PHP 8.2+
@@ -106,7 +106,7 @@ php artisan serve
 
 Server runs at: `http://localhost:8000`
 
-## 📚 API Endpoints
+## API Endpoints
 
 ### Base URL
 ```
@@ -202,7 +202,7 @@ GET /people/liked?user_id=1
 }
 ```
 
-## 📖 Interactive API Documentation
+## Interactive API Documentation
 
 Access Swagger UI at:
 ```
@@ -211,7 +211,7 @@ http://localhost:8000/api/documentation
 
 Test all endpoints interactively with built-in request/response examples.
 
-## ⏰ Scheduled Tasks (Cronjob)
+## Scheduled Tasks (Cronjob)
 
 The application includes an hourly scheduled task:
 
@@ -244,7 +244,7 @@ MAIL_USERNAME=your-username
 MAIL_PASSWORD=your-password
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Test with cURL
 
@@ -274,70 +274,12 @@ php artisan people:check-popular
 tail storage/logs/laravel.log
 ```
 
-## 🌐 Deployment
+##  Deployment
+Deployed on heroku : https://tinder-backend-muskan-bb1ddfe30637.herokuapp.com/api/documentation
 
-### Deploy to Heroku
+##  Author
 
-```bash
-# Install Heroku CLI
-brew tap heroku/brew && brew install heroku
-
-# Login and create app
-heroku login
-heroku create your-app-name
-
-# Add Procfile
-echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
-
-# Deploy
-git init
-git add .
-git commit -m "Initial commit"
-git push heroku main
-
-# Setup database
-heroku run php artisan migrate --force
-heroku run php artisan db:seed --force
-heroku run php artisan l5-swagger:generate
-```
-
-Your API will be live at: `https://your-app-name.herokuapp.com`
-
-## 📝 Key Implementation Details
-
-### Like/Dislike Logic
-- Unique constraints prevent duplicate likes/dislikes
-- Liking removes any existing dislike (and vice versa)
-- `like_count` increments/decrements automatically
-- Pagination excludes already swiped profiles
-
-### Email Notifications
-- Hourly check via Laravel scheduler
-- Only notifies once per person (via `admin_notified` flag)
-- Uses Mailable class with Blade template
-- Falls back to log driver for development
-
-### API Best Practices
-- RESTful endpoints with proper HTTP methods
-- JSON responses with appropriate status codes
-- Request validation on all inputs
-- Foreign key constraints ensure data integrity
-
-## 🔒 Security Notes
-
-- Input validation on all endpoints
-- Foreign key constraints with cascade delete
-- Unique constraints prevent data duplication
-- Environment-based configuration for sensitive data
-
-## 📄 License
-
-MIT License
-
-## 👤 Author
-
-Built as a demonstration project for interview purposes.
+Developed with ♥️ by muskan
 
 ---
 
-**Ready to test?** Start the server and visit `/api/documentation` 🚀
