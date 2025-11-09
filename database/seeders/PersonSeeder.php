@@ -42,14 +42,19 @@ class PersonSeeder extends Seeder
             Person::create($person);
         }
         
+        $names = ['Alex', 'Blake', 'Casey', 'Drew', 'Elliot', 'Finley', 'Gray', 'Harper', 'Indigo', 'Jordan'];
+        $lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez'];
+        $cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'Austin'];
+        $states = ['NY', 'CA', 'IL', 'TX', 'AZ', 'PA', 'FL', 'OH', 'GA', 'NC'];
+        
         for ($i = 0; $i < 50; $i++) {
             Person::create([
-                'name' => fake()->name(),
-                'age' => fake()->numberBetween(18, 60),
+                'name' => $names[$i % 10] . ' ' . $lastNames[($i + 5) % 10],
+                'age' => 18 + ($i % 43),
                 'pictures' => [
                     'https://picsum.photos/400/500?random=' . (100 + $i),
                 ],
-                'location' => fake()->city() . ', ' . fake()->stateAbbr(),
+                'location' => $cities[$i % 10] . ', ' . $states[$i % 10],
             ]);
         }
     }
